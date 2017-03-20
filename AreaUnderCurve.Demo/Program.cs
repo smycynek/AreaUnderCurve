@@ -6,9 +6,9 @@ namespace AreaUnderCurve.Demo
 {
     class Program
     {
+        //Simple demo
         static void Main(string[] args)
         {
-
             Utility.Log("Try out some sample polynomials, bounds, step sizes, and algorithms.");
             var trapezoid = Algorithms.GetAlgorithm("Trapezoid");
             var midpoint = Algorithms.GetAlgorithm("Midpoint");

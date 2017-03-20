@@ -12,7 +12,6 @@ namespace AreaUnderCurve.Core
             System.Diagnostics.Debug.WriteLine(data);
             if (Utility.LOGGING)
                 Console.WriteLine(data);
-
         }
     }
 }

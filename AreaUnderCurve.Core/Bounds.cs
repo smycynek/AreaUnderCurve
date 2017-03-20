@@ -11,10 +11,10 @@ namespace AreaUnderCurve.Core
         public Bounds(double lowerBound, double upperBound, double stepSize)
         {
             if (stepSize <= 0)
-                throw new ArithmeticException($"{nameof(stepSize)} must be > 0: {stepSize}");
+                throw new ArgumentException($"{nameof(stepSize)} must be > 0: {stepSize}");
 
             if (lowerBound >= upperBound)
-                throw new ArithmeticException($"Invalid bounds: {lowerBound} {upperBound}");
+                throw new ArgumentException($"Invalid bounds: {lowerBound} {upperBound}");
 
             LowerBound = lowerBound;
             UpperBound = upperBound;

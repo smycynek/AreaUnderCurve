@@ -9,7 +9,7 @@ namespace AreaUnderCurve.Tests
     public class AreaTests
     {
         [Fact]
-        public void test_simple_area_1()
+        public void Test_Simple_Area_1()
         {
             var bounds = new Bounds(0, 10, .1);
             var polynomial = new Polynomial(new SortedDictionary<double, double> { [1] = 1 }); // f(x) = x
@@ -19,7 +19,7 @@ namespace AreaUnderCurve.Tests
         }
 
         [Fact]
-        public void test_simple_area_2()
+        public void Test_Simple_Area_2()
         {
             var bounds = new Bounds(0, 10, .1);
             var polynomial = new Polynomial(new SortedDictionary<double, double> { [2] = 1 });// # f(x) = x^2
@@ -28,7 +28,7 @@ namespace AreaUnderCurve.Tests
             Assert.Equal(area, 1000.0 / 3.0,2);
         }
         [Fact]
-        public void test_simple_area_3()
+        public void Test_Simple_Area_3()
         {
 
             var bounds = new Bounds(-5, 5, .1);

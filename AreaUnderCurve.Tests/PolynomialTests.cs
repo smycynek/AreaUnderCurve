@@ -7,18 +7,19 @@ namespace AreaUnderCurve.Tests
     public class PolynomialTests
     {
         [Fact]
-        public void TestPolynomial_OK()
+        public void Test_Polynomial_Int_OK()
         {
             Polynomial poly1 = new Polynomial(
                 new System.Collections.Generic.SortedDictionary<double, double>
                 {
-                    [2] = 2,
-                    [1] = 2,
-                    [0] = 2
+                    [2] = 3,
+                    [1] = 4,
+                    [0] = 5
                 });
 
-            Assert.Equal(poly1.Evaluate(2), 14);
-
+            Assert.Equal(poly1.Evaluate(-2), 9);
+            Assert.Equal(poly1.Evaluate(0), 5);
+            Assert.Equal(poly1.Evaluate(2), 25);
         }
         [Fact]
         public void Test_Polynomial_StringRep_OK1()
@@ -26,13 +27,13 @@ namespace AreaUnderCurve.Tests
             Polynomial poly1 = new Polynomial(
                  new System.Collections.Generic.SortedDictionary<double, double>
                  {
-                     [4] = 2,
-                     [2] = 2,
-                     [1] = 2,
-                     [0] = -2
+                     [0] = -2.5,
+                     [1] = 1.5,
+                     [3] = 2,
+                     [4] = 1
                  });
 
-            Assert.Equal(poly1.ToString(), "f(x)=2x^4 + 2x^2 + 2x + -2");
+            Assert.Equal(poly1.ToString(), "f(x)=x^4 + 2x^3 + 1.5x + -2.5");
         }
 
         [Fact]
@@ -61,30 +62,7 @@ namespace AreaUnderCurve.Tests
         }
 
         [Fact]
-        public void TestPolynomialNegativeExponentFail()
-        {
-            Assert.Throws<ArithmeticException>( () => new Polynomial(
-             new System.Collections.Generic.SortedDictionary<double, double>
-             {
-                 [-4] = 2
-             }));
-
-        }
-
-        [Fact]
-        public void TestFractionLExponentWithNegativeBoundFail()
-        {
-            Polynomial poly1 =  new Polynomial(
-            new System.Collections.Generic.SortedDictionary<double, double>
-            {
-                [1.5] = 2
-            });
-            Assert.Throws<ArithmeticException>(() => poly1.Evaluate(-1));
-
-        }
-
-        [Fact]
-        public void TestFractionalExponent_OK()
+        public void Test_Fractional_Exponent_OK()
         {
             Polynomial poly1 = new Polynomial(
           new System.Collections.Generic.SortedDictionary<double, double>
@@ -95,5 +73,43 @@ namespace AreaUnderCurve.Tests
             Assert.Equal(poly1.Evaluate(2), 2 * Math.Sqrt(2));
 
         }
+        [Fact]
+        public void Test_Fractional_Exponent_With_Negative_Bound_Fail()
+        {
+            Polynomial poly1 = new Polynomial(
+            new System.Collections.Generic.SortedDictionary<double, double>
+            {
+                [2.5] = 1
+            });
+            Assert.Throws<ArgumentException>(() => poly1.Evaluate(-2));
+
+        }
+
+        [Fact]
+        public void Test_Polynomial_Negative_Exponent_Fail()
+        {
+            Assert.Throws<ArgumentException>( () => new Polynomial(
+             new System.Collections.Generic.SortedDictionary<double, double>
+             {
+                 [-2] = 1
+             }));
+
+        }
+
+        [Fact]
+        public void Test_Polynomial_Negative_Fraction_Exponent_Fail()
+        {
+            Assert.Throws<ArgumentException>(() => new Polynomial(
+            new System.Collections.Generic.SortedDictionary<double, double>
+            {
+                [-2.5] = 1
+            }));
+
+        }
+
+
+
+
+
     }
 }

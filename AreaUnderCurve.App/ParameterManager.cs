@@ -16,19 +16,20 @@ namespace AreaUnderCurve.App
             if (Polynomial.FractionalExponents && (Bounds.LowerBound < 0 || Bounds.UpperBound < 0))
                 throw new ArgumentException($"Fractional exponents not supported for negative bounds. {Bounds.LowerBound} {Bounds.UpperBound}");
         }
-        private RawParameters _rawParameters = null;
         public string AlgorithmName { get; private set; }
         public Func<Polynomial, double, double, double> Algorithm { get; private set; }
         public Bounds Bounds { get; private set; }
         public Polynomial Polynomial { get; private set; }
-
+        #region Implementation
         private void Init(RawParameters rawParameters)
         {
             AlgorithmName = _rawParameters.Algorithm;
             Polynomial = GetPolynomial();
             Algorithm = GetAlgorithm();
-            Bounds = GetBounds();
 
+            Bounds = GetBounds();
+            if (Polynomial.FractionalExponents && (Bounds.LowerBound < 0 || Bounds.UpperBound < 0))
+                throw new ArgumentException($"Fractional exponents not supported with negative bounds: {Bounds.LowerBound} {Bounds.UpperBound}");
         }
         private Tuple<double, double> ParsePair(string pair)
         {
@@ -99,6 +100,10 @@ namespace AreaUnderCurve.App
             }
             return algorithm;
         }
+
+        private RawParameters _rawParameters = null;
+        #endregion
+
     }
 
 }
