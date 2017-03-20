@@ -8,7 +8,7 @@
       <projectUrl>https://github.com/smycynek/AreaUnderCurve</projectUrl>
       <description>Calculates area under a polynomial</description>
       <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
-      <iconUrl>https://github.com/smycynek/AreaUnderCurve/blob/master/AreaUnderCurve.Core/icon.png</iconUrl>
+      <iconUrl>https://raw.githubusercontent.com/smycynek/AreaUnderCurve/master/AreaUnderCurve.Core/icon.png</iconUrl>
       <authors>Steven Mycynek</authors>
       <copyright>Steven Mycynek 2017</copyright>
       <summary>A simple .NET Core library for calculating riemann sums</summary>
