@@ -2,30 +2,54 @@
 using System.Collections.Generic;
 using System.Text;
 using AreaUnderCurve.Core;
-using CommandLineParser.Arguments;
+using Microsoft.Extensions.Configuration;
 
 namespace AreaUnderCurve.App
 {
-
-    internal class RawParameters
+    public class RawParameters
     {
-        [ValueArgument(typeof(double), 'l', "lowerBound", Description = "Set lower bound", DefaultValue = 0, Optional = true)]
-        public double LowerBound;
+        public double LowerBound { get; set; }
+        public double UpperBound { get; set; }
+        public double StepSize { get; set; }
+        public string Polynomial { get; set; }
+        public string Algorithm { get; set; }
+        private RawParameters() { }
+        private static Dictionary<string, string> GetParameterDictionary()
+        {
+            return new Dictionary<string, string>
+                {
+                                    {"polynomial", ""},
+                                    {"lowerBound", "0"},
+                                    {"upperBound", "10"},
+                                    {"stepSize", "1"},
+                                    {"algorithm", "Trapezoid"}
+                };
 
-        [ValueArgument(typeof(double), 'u', "upperBound", Description = "Set upper bound", DefaultValue = 10, Optional = true)]
-        public double UpperBound;
+        }
+        public static bool TryGetRawParameters(string[] args, out RawParameters parameters)
+        {
 
-        [BoundedValueArgument(typeof(double), 's', "stepSize", Description = "Set step size", MinValue = float.Epsilon, MaxValue = float.MaxValue, Optional = true, UseMinValue = true)]
-        public double StepSize;
+            var configBuilder = new ConfigurationBuilder();
+            configBuilder.AddInMemoryCollection(GetParameterDictionary()).AddCommandLine(args);
+            IConfiguration config = configBuilder.Build();
 
-        [EnumeratedValueArgument(typeof(string), 'a',
-            LongName = "algorithm", Description = "Set algorithm: Trapezoid|Midpoint|Simpson",
-            AllowedValues = "Trapezoid;Midpoint;Simpson", AllowMultiple = false, Optional = true)]
-        public string Algorithm;
+            try
+            {
+                var polynomial = config.GetValue<string>("polynomial");
+                var lowerBound = config.GetValue<double>("lowerBound");
+                var upperBound = config.GetValue<double>("upperBound");
+                var stepSize = config.GetValue<double>("stepSize");
+                var algorithm = config.GetValue<string>("algorithm");
 
-        [ValueArgument(typeof(string), 'p', "polynomial", Description = "Set polynomial", DefaultValue = "", Optional = false)]
-        public string PolynomialStr;
-
-
+                parameters = new RawParameters { Algorithm = algorithm, LowerBound = lowerBound, UpperBound = upperBound, StepSize = stepSize, Polynomial = polynomial };
+                return true;
+            }
+            catch (Exception ex)
+            {
+                parameters = null;
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }
