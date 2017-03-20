@@ -4,14 +4,15 @@
     <!-- Required elements-->
     <id>AreaUnderCurve.Core</id>
     <title>Area Under Curve</title>
-    <version>0.1.2</version>
+    <version>0.1.4</version>
       <projectUrl>https://github.com/smycynek/AreaUnderCurve</projectUrl>
       <description>Calculates area under a polynomial</description>
       <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
       <authors>Steven Mycynek</authors>
       <copyright>Steven Mycynek 2017</copyright>
+      <summary>A simple ilbrary for calculating riemann sums</summary>
 	<dependencies>
-    <dependency id="Microsoft.Extension.Configuration.Binder" version="1.1.1" />
+    <dependency id="Microsoft.Extensions.Configuration.Binder" version="1.1.1" />
     <dependency id="Microsoft.Extensions.Configuration.CommandLine" version="1.1.1" />
 </dependencies>
     <!-- Optional elements -->
