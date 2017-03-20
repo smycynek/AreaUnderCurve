@@ -3,6 +3,8 @@
 
 * Version 0.1.1
 * Copyright 2017 Steven Mycynek
+* https://www.nuget.org/packages/AreaUnderCurve.Core
+
 * Supports 
     * simpson, trapezoid, and midpoint algorithms, 
     * n-degree single variable polynomials, including fractional exponents,
