@@ -1,16 +1,16 @@
 # AreaUnderCurve
 .NET Core library and application to calculate area under a curve
 
-* Version 0.1.0
+* Version 0.1.1
 * Copyright 2017 Steven Mycynek
 * Supports 
     * simpson, trapezoid, and midpoint algorithms, 
     * n-degree single variable polynomials, including fractional exponents,
     * variable step size
 
-`USAGE =  -/p|/polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}...`
-`/l|/lowerBound <lower bound> -/|/upperBound <upper bound> -/s|/stepSize <step size>` 
-`/a|/algorithm <Simpson | Trapezoid | Midpoint>`
+`USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}...`
+`/lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size>` 
+`/algorithm <Simpson | Trapezoid | Midpoint>`
 
 * I did a python project just for fun (https://github.com/smycynek/area_under_curve), so I decided to make a .NET Core version.
 
@@ -20,6 +20,14 @@
 ## Examples:
 
 `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
+
+
+or
+
+`var simpson = Algorithms.GetAlgorithm("Simpson");`
+`var boundsSimple1 = new Bounds(0, 10, .1);`
+`var polynomialSimpleCubic = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [3] = 1 });`
+`AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint);`
 
 
 
