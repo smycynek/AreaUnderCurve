@@ -1,7 +1,7 @@
 # AreaUnderCurve
 .NET Core library and application to calculate area under a curve
 
-* Version 0.1.1
+* Version 0.1.4
 * Copyright 2017 Steven Mycynek
 * https://www.nuget.org/packages/AreaUnderCurve.Core
 
