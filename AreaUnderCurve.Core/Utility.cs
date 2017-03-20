@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AreaUnderCurve.Core
 {
+    /// <summary>
+    /// Simple logging class.
+    /// </summary>
     public static class Utility
     {
         public static bool LOGGING = true;

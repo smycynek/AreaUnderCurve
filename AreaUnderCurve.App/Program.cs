@@ -14,9 +14,10 @@ namespace AreaUnderCurve.App
     */
         static void Main(string[] args)
         {
-
+            //See ParameterManager.Usage for arugments
             if (!RawParameters.TryGetRawParameters(args, out var rawParameters))
             {
+                Utility.Log(ParameterManager.Usage);
                 return;
             }
             ParameterManager parameterManager;
@@ -26,7 +27,8 @@ namespace AreaUnderCurve.App
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Utility.Log(ParameterManager.Usage);
+                Utility.Log(ex.Message);
                 return;
             }
 

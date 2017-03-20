@@ -5,9 +5,12 @@ using System.Linq;
 
 namespace AreaUnderCurve.Core
 {
+
+    /// <summary>
+    /// Simple class to represent the boundaries under a curve and an approximation step-size.
+    /// </summary>
     public class Bounds
     {
-
         public Bounds(double lowerBound, double upperBound, double stepSize)
         {
             if (stepSize <= 0)
@@ -27,17 +30,21 @@ namespace AreaUnderCurve.Core
             return $"[{LowerBound} - {UpperBound}] : StepSize: {StepSize}";
         }
 
-        private static IEnumerable<double> StepRange(double lowerBound, double upperBound, double stepSize)
-        {
-            double val;
-            for (val = lowerBound; val <= upperBound; val += stepSize)
-                yield return val;
-        }
 
         public double LowerBound { get; private set; }
         public double UpperBound { get; private set; }
         public double StepSize { get; private set; }
 
         public List<double> FullRange { get; private set; }
+
+        #region Implementation
+        private static IEnumerable<double> StepRange(double lowerBound, double upperBound, double stepSize)
+        {
+            double val;
+            for (val = lowerBound; val <= upperBound; val += stepSize)
+                yield return val;
+        }
+        #endregion
+
     }
 }
