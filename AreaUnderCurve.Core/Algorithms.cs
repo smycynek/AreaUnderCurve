@@ -10,9 +10,9 @@ namespace AreaUnderCurve.Core
         private static Dictionary<string, Func<Polynomial, double, double, double>> _functionMap = new Dictionary<string, Func<Polynomial, double, double, double>>();
         public static void Init()
         {
-            _functionMap.Add("Simpson", Simpson);
-            _functionMap.Add("Trapezoid", Trapezoid);
-            _functionMap.Add("Midpoint", Trapezoid);
+            _functionMap.Add(nameof(Simpson), Simpson);
+            _functionMap.Add(nameof(Trapezoid), Trapezoid);
+            _functionMap.Add(nameof(Midpoint), Trapezoid);
         }
 
         public static  double Simpson(Polynomial polynomial, double lowerBound, double upperBound)

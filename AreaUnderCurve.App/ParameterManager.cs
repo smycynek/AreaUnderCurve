@@ -6,70 +6,28 @@ using System.Linq;
 
 namespace AreaUnderCurve.App
 {
-
-  
     public class ParameterManager
     {
-        public ParameterManager(string[] args)
+        public ParameterManager(RawParameters rawParameters)
         {
-            _rawParameters = Init(args);
-            if (_rawParameters == null)
-            {
-                throw new ArgumentException("Error parsing Parameters.");
-            }
-            AlgorithmName = _rawParameters.Algorithm;
-            Polynomial = GetPolynomial();
-            Algorithm = GetAlgorithm();
-            Bounds = GetBounds();
-
-
-
+            _rawParameters = rawParameters;
+            Init(rawParameters);
+  
             if (Polynomial.FractionalExponents && (Bounds.LowerBound < 0 || Bounds.UpperBound < 0))
                 throw new ArgumentException($"Fractional exponents not supported for negative bounds. {Bounds.LowerBound} {Bounds.UpperBound}");
         }
-
         private RawParameters _rawParameters = null;
         public string AlgorithmName { get; private set; }
         public Func<Polynomial, double, double, double> Algorithm { get; private set; }
         public Bounds Bounds { get; private set; }
         public Polynomial Polynomial { get; private set; }
 
-        private RawParameters Init(string[] args)
+        private void Init(RawParameters rawParameters)
         {
-            CommandLineParser.CommandLineParser parser = new CommandLineParser.CommandLineParser();
-
-            //parser.Arguments.Add(new CommandLineParser.Arguments.ValueArgument<double>('l', "lowerBound", "lower bound"));
-            parser.AcceptHyphen = false;
-            parser.AcceptSlash = true;
-
-            //parser.ParseCommandLine(args);
-            
-            RawParameters rp = new RawParameters();
-            parser.ExtractArgumentAttributes(rp);
-            //var arg = parser.LookupArgument("lowerBound");
-
-            try
-            {
-                parser.ParseCommandLine(args);
-                //parser.ShowParsedArguments();
-            }
-
-            catch (CommandLineParser.Exceptions.CommandLineException ex)
-            {
-                Console.WriteLine(ex.Message);
-                /* you can help the user by printing all the possible arguments and their
-                 * description, CommandLineParser class can do this for you.
-                 */
-                parser.ShowUsage();
-                throw;
-
-            }
-            if (rp.Algorithm == null)
-                rp.Algorithm = "Trapezoid";
-            if (rp.StepSize == 0)
-                rp.StepSize = 1;
-            return rp;
-
+            AlgorithmName = _rawParameters.Algorithm;
+            Polynomial = GetPolynomial();
+            Algorithm = GetAlgorithm();
+            Bounds = GetBounds();
 
         }
         private Tuple<double, double> ParsePair(string pair)
@@ -102,10 +60,10 @@ namespace AreaUnderCurve.App
         private Polynomial GetPolynomial()
         {
             SortedDictionary<double, double> coefficients = new SortedDictionary<double, double>();
-            var pairs = ParseDictionaryLiteral(_rawParameters.PolynomialStr);
+            var pairs = ParseDictionaryLiteral(_rawParameters.Polynomial);
             if (pairs == null)
             {
-                throw new ArgumentException($"Invalid polynomial string: {_rawParameters.PolynomialStr}");
+                throw new ArgumentException($"Invalid polynomial string: {_rawParameters.Polynomial}");
             }
             foreach (string pair in pairs)
             {
