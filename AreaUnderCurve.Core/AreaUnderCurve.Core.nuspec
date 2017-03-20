@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+    <!-- Required elements-->
+    <id>AreaUnderCurve.Core</id>
+    <version>0.1</version>
+    <description>AreaUnderCurve.Core</description>
+    <authors>Steven Mycynek</authors>
+
+	<dependencies>
+    <dependency id="Microsoft.Extension.Configuration.Binder" version="0.1.1" />
+    <dependency id="Microsoft.Extensions.Configuration.CommandLine" version="0.1.1" />
+</dependencies>
+    <!-- Optional elements -->
+    <!-- ... -->
+    </metadata>
+<files> 
+    <file src="bin\Release\netcoreapp1.1\*.dll" target="lib\netcoreapp1.1" />
+</files>
+</package>
