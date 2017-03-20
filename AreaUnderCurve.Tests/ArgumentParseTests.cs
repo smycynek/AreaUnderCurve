@@ -11,7 +11,7 @@ namespace AreaUnderCurve.Tests
     public class ArgumentParseTests
     {
         [Fact]
-        public void TestParameterManager_OK()
+        public void Test_ParameterManager_OK()
         {
             RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{3.5:1,0:2}", "/lowerBound", "2", "/upperBound", "5", "/stepSize", ".2", "/algorithm", "Simpson" }, out var rawParameters);
             ParameterManager pm = new ParameterManager(rawParameters);
@@ -28,7 +28,7 @@ namespace AreaUnderCurve.Tests
         }
 
         [Fact]
-        public void TestParameterManager_OK_Defaults()
+        public void Test_ParameterManager_OK_Defaults()
         {
             RawParameters.TryGetRawParameters( new string[] { "/polynomial", "{3.5:1,0:2}" }, out var rawParameters);
             ParameterManager pm = new ParameterManager(rawParameters);
@@ -44,20 +44,55 @@ namespace AreaUnderCurve.Tests
         }
 
         [Fact]
-        public void TestParameterManager_Reject_Negative_Bounds_With_Fractions()
+        public void Test_ParameterManager_Reject_Negative_Exponent()
+        {
+            RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{-4:1,0:2}", "/lowerBound", "5" }, out var rawParameters);
+            Assert.Throws<ArgumentException>(() => new ParameterManager(rawParameters));
+        }
+
+
+        [Fact]
+        public void Test_ParameterManager_Reject_Negative_Bounds_With_Fractions()
         {
             RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{3.5:1,0:2}", "/lowerBound", "-5" }, out var rawParameters);
             Assert.Throws<ArgumentException>(()=> new ParameterManager(rawParameters)); 
         }
 
         [Fact]
-        public void TestParameterManager_Negative_double_digit_bounds_OK()
+        public void Test_ParameterManager_Negative_Double_Digit_Bounds_OK()
         {
             RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{1:1,0:2}", "/lowerBound", "-10.0" }, out var rawParameters);
             ParameterManager pm = new ParameterManager(rawParameters);
             Assert.Equal(pm.Bounds.LowerBound, -10);
+        }
 
+        [Fact]
+        public void Test_ParameterManager_Invalid_Polynomial1()
+        {
+             RawParameters.TryGetRawParameters(new string[] { "/polynomial", "x{1:1,0:2}" }, out var rawParameters);
+             Assert.Throws<ArgumentException>(() => new ParameterManager(rawParameters));
+        }
 
+        [Fact]
+        public void Test_ParameterManager_Invalid_Polynomial2()
+        {
+            RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{1}" }, out var rawParameters);
+            Assert.Throws<ArgumentException>(() => new ParameterManager(rawParameters));
+        }
+
+        [Fact]
+        public void Test_ParameterManager_Invalid_Polynomial3()
+        {
+            RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{1a:1}" }, out var rawParameters);
+            Assert.Throws<ArgumentException>(() => new ParameterManager(rawParameters));
+        }
+
+        [Fact]
+        public void Test_ParameterManager_Invalid_Numerical_Argument()
+        {
+            var success = RawParameters.TryGetRawParameters(new string[] { "/polynomial", "{1:1}", "/stepSize", "x1" }, out var rawParameters);
+            Assert.False(success);
+            Assert.Null(rawParameters);
         }
     }
 }

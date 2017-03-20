@@ -13,28 +13,17 @@ namespace AreaUnderCurve.App
         public double StepSize { get; set; }
         public string Polynomial { get; set; }
         public string Algorithm { get; set; }
-        private RawParameters() { }
-        private static Dictionary<string, string> GetParameterDictionary()
-        {
-            return new Dictionary<string, string>
-                {
-                                    {"polynomial", ""},
-                                    {"lowerBound", "0"},
-                                    {"upperBound", "10"},
-                                    {"stepSize", "1"},
-                                    {"algorithm", "Trapezoid"}
-                };
 
-        }
         public static bool TryGetRawParameters(string[] args, out RawParameters parameters)
         {
 
             var configBuilder = new ConfigurationBuilder();
-            configBuilder.AddInMemoryCollection(GetParameterDictionary()).AddCommandLine(args);
-            IConfiguration config = configBuilder.Build();
+            configBuilder.AddInMemoryCollection(GetParameterDictionary()).AddCommandLine(args);        
+        
 
             try
             {
+                IConfiguration config = configBuilder.Build();
                 var polynomial = config.GetValue<string>("polynomial");
                 var lowerBound = config.GetValue<double>("lowerBound");
                 var upperBound = config.GetValue<double>("upperBound");
@@ -51,5 +40,23 @@ namespace AreaUnderCurve.App
                 return false;
             }
         }
+
+        #region Implementation
+
+        private RawParameters() { }
+
+        private static Dictionary<string, string> GetParameterDictionary()
+        {
+            return new Dictionary<string, string>
+                {
+                                    {"polynomial", ""},
+                                    {"lowerBound", "0"},
+                                    {"upperBound", "10"},
+                                    {"stepSize", "1"},
+                                    {"algorithm", "Trapezoid"}
+                };
+
+        }
+        #endregion
     }
 }

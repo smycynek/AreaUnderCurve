@@ -12,13 +12,12 @@ namespace AreaUnderCurve.Core
             foreach (double e in _coefficients.Keys)
             {
                 if (e < 0)
-                    throw new ArithmeticException($"Negative exponents not supported: {e}");
+                    throw new ArgumentException($"Negative exponents not supported: {e}");
                 if ((e % 1) != 0)
                     FractionalExponents = true;
 
             }
         }
-        private SortedDictionary<double, double> _coefficients;
         public override string ToString()
         {
             List<string> terms = new List<string>();
@@ -31,7 +30,22 @@ namespace AreaUnderCurve.Core
             
             return $"f(x)={string.Join(" + ", terms)}";
         }
+        public double Evaluate(double value)
+        {
+            if ((value < 0) && FractionalExponents)
+                throw new ArgumentException($"Fractional exponents not supported for negative inputs {value}");
+            double total = 0;
+            foreach (double e in _coefficients.Keys)
+            {
+                double coefficient = _coefficients[e];
+                total += (coefficient * (Math.Pow(value, e)));
 
+            }
+            return total;
+        }
+        public bool FractionalExponents { get; private set; }
+
+        #region Implementation
         private string FormatTerm(double exponent, double coefficient)
         {
             string exp;
@@ -54,19 +68,8 @@ namespace AreaUnderCurve.Core
 
             else return $"{coefficient}{exp}";
         }
-        public double Evaluate(double value)
-        {
-            if ((value < 0) && FractionalExponents)
-                throw new ArithmeticException($"Fractional exponents not supported for negative inputs {value}");
-            double total = 0;
-            foreach (double e in _coefficients.Keys)
-            {
-                double coefficient = _coefficients[e];
-                total += (coefficient * (Math.Pow(value, e)));
 
-            }
-            return total;
-        }
-        public bool FractionalExponents { get; private set; }
+        private SortedDictionary<double, double> _coefficients;
+        #endregion
     }
 }
