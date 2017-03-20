@@ -5,19 +5,13 @@ using System.Reflection;
 
 namespace AreaUnderCurve.Core
 {
+    /// <summary>
+    /// A few popular riemann sum algorithms
+    /// </summary>
     public static class Algorithms
     {
-        private static Dictionary<string, Func<Polynomial, double, double, double>> _functionMap = new Dictionary<string, Func<Polynomial, double, double, double>>();
-        public static void Init()
+        public static double Simpson(Polynomial polynomial, double lowerBound, double upperBound)
         {
-            _functionMap.Add(nameof(Simpson), Simpson);
-            _functionMap.Add(nameof(Trapezoid), Trapezoid);
-            _functionMap.Add(nameof(Midpoint), Trapezoid);
-        }
-
-        public static  double Simpson(Polynomial polynomial, double lowerBound, double upperBound)
-        {
-
             var lowerVal = polynomial.Evaluate(lowerBound);
             var upperVal = polynomial.Evaluate(upperBound);
             var midpointVal = polynomial.Evaluate((lowerBound + upperBound) / 2);
@@ -36,7 +30,6 @@ namespace AreaUnderCurve.Core
             return (upperBound - lowerBound) * (polynomial.Evaluate((lowerBound + upperBound) / 2));
         }
 
-
         public static Func<Polynomial, double, double, double> GetAlgorithm(string name)
         {
             if (_functionMap.Count == 0) 
@@ -45,5 +38,24 @@ namespace AreaUnderCurve.Core
                 throw new ArgumentException($"Algorithm not found: {name}");
             return _functionMap[name];
         }
+
+        #region Implementation
+        /// <summary>
+        /// Initializes map of algorithm names to functions on-demand.
+        /// </summary>
+        private static void Init()
+        {
+            //It's possible to do this automatically with reflection, but the code is extremely verbose, and I
+            //didn't think it was worth it for something this simple.  I could have made the algorithm a class,
+            //but I wanted the user to be able to easily pass a lambda with their own algorithm as well.
+            _functionMap.Add(nameof(Simpson), Simpson);
+            _functionMap.Add(nameof(Trapezoid), Trapezoid);
+            _functionMap.Add(nameof(Midpoint), Trapezoid);
+        }
+
+        private static Dictionary<string, Func<Polynomial, double, double, double>> _functionMap = new Dictionary<string, Func<Polynomial, double, double, double>>();
+        #endregion
+
     }
 }
+

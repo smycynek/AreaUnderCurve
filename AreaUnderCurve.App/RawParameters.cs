@@ -6,6 +6,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace AreaUnderCurve.App
 {
+
+    /// <summary>
+    /// A basic parameters collection for area under a curve.  Only data type (int, string...) are validated.
+    /// ParameterManager does all of the final argument validation.
+    /// </summary>
     public class RawParameters
     {
         public double LowerBound { get; set; }
@@ -36,7 +41,7 @@ namespace AreaUnderCurve.App
             catch (Exception ex)
             {
                 parameters = null;
-                Console.WriteLine(ex.Message);
+                Utility.Log(ex.Message);
                 return false;
             }
         }
