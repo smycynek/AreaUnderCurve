@@ -6,13 +6,13 @@ using System.Linq;
 namespace AreaUnderCurve.App   
 
 {
-    class Program
+    public class Program
     {
 
     /*Find approximate area under curve:  Supports simpson, trapezoid, and
     midpoint algorithms, n-degree single variable polynomials, and variable step size
     */
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //See ParameterManager.Usage for arugments
             if (!RawParameters.TryGetRawParameters(args, out var rawParameters))

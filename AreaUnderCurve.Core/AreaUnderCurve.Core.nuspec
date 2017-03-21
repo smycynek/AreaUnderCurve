@@ -4,7 +4,7 @@
     <!-- Required elements-->
     <id>AreaUnderCurve.Core</id>
     <title>Area Under Curve</title>
-    <version>0.1.6</version>
+    <version>0.2.0</version>
       <projectUrl>https://github.com/smycynek/AreaUnderCurve</projectUrl>
       <description>Calculates area under a polynomial</description>
       <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
@@ -12,10 +12,12 @@
       <authors>Steven Mycynek</authors>
       <copyright>Steven Mycynek 2017</copyright>
       <summary>A simple .NET Core library for calculating riemann sums</summary>
+      <tags>calculus integral riemann numerical</tags>
     <!-- Optional elements -->
     <!-- ... -->
     </metadata>
 <files> 
-    <file src="bin\Release\netcoreapp1.1\*.dll" target="lib\netcoreapp1.1" />
+    <file src="bin\Release\netstandard1.3\*.dll" target="lib\netstandard1.3" />
+    <file src="bin\Release\net451\*.dll" target="lib\net451" />
 </files>
 </package>
