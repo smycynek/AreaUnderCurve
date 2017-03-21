@@ -1,7 +1,7 @@
 # AreaUnderCurve
 .NET Standard 1.3 / 4.5.1 library and application to calculate area under a curve
 
-* Version 0.2.0
+* Version 0.2.1
 * Copyright 2017 Steven Mycynek
 * https://www.nuget.org/packages/AreaUnderCurve.Core
 
@@ -23,6 +23,9 @@
 
 `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
+or
+
+`AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
 or
 
