@@ -4,10 +4,10 @@ using AreaUnderCurve.Core;
   
 namespace AreaUnderCurve.Demo
 {
-    class Program
+    public class Program
     {
         //Simple demo
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Utility.Log("Try out some sample polynomials, bounds, step sizes, and algorithms.");
             var trapezoid = Algorithms.GetAlgorithm("Trapezoid");

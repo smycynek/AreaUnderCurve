@@ -2,10 +2,18 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Description>Calculates area under a polynomial</Description>
     <RepositoryUrl>https://www.nuget.org/packages/AreaUnderCurve.Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
+    <Authors>Steven Mycynek</Authors>
+    <Company />
+    <Product />
+    <Copyright>Steven Mycynek 2017</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/AreaUnderCurve.Core</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/smycynek/AreaUnderCurve/master/AreaUnderCurve.Core/icon.png</PackageIconUrl>
+    <PackageTags>calculus integral riemann numerical</PackageTags>
   </PropertyGroup>
 
 </Project>
