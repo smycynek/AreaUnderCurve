@@ -41,7 +41,8 @@ namespace AreaUnderCurve.Core
         private static IEnumerable<double> StepRange(double lowerBound, double upperBound, double stepSize)
         {
             double val;
-            for (val = lowerBound; val <= upperBound; val += stepSize)
+            //Final number should be almost equal to upper bound -- adding fraction of stepSize offset to account for rounding errors.
+            for (val = lowerBound; val <= upperBound + (stepSize * 0.1); val += stepSize)
                 yield return val;
         }
         #endregion

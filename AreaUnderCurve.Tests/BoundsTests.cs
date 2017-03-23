@@ -52,10 +52,24 @@ namespace AreaUnderCurve.Tests
         }
 
         [Fact]
-        public void Test_Bounds_Range_Length()
+        public void Test_Bounds_Range_Length1()
         {
-            var bounds = new Bounds(0, 5, .1);
-            Assert.Equal(bounds.FullRange.Count, 51);
+            var bounds = new Bounds(2, 4, .1);
+            Assert.Equal(bounds.FullRange.Count, 21);
+        }
+
+        [Fact]
+        public void Test_Bounds_Range_Length2()
+        {
+            var bounds = new Bounds(0, 100, .01);
+            Assert.Equal(bounds.FullRange.Count, 10001);
+        }
+
+        [Fact]
+        public void Test_Bounds_Range_Length3()
+        {
+            var bounds = new Bounds(0, 5, 1);
+            Assert.Equal(bounds.FullRange.Count, 6);
         }
 
     }
