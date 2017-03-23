@@ -8,7 +8,7 @@ namespace AreaUnderCurve.Core
     /// <summary>
     /// A few popular riemann sum algorithms
     /// </summary>
-    public static class Algorithms
+    public static partial class Algorithms
     {
         public static double Simpson(Polynomial polynomial, double lowerBound, double upperBound)
         {

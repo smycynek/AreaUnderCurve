@@ -4,7 +4,7 @@
     <!-- Required elements-->
     <id>AreaUnderCurve.Core</id>
     <title>Area Under Curve</title>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
       <projectUrl>https://github.com/smycynek/AreaUnderCurve</projectUrl>
       <description>Calculates area under a polynomial</description>
       <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>

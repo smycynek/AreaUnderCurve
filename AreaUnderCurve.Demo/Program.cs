@@ -20,9 +20,14 @@ namespace AreaUnderCurve.Demo
             var polynomialSimpleFraction = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [.5] = 1 });
 
             Utility.Log("-Demo 1");
-            Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint)}");
+            Utility.Log($"MArea={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint)}");
 
-            Utility.Log("\n-Demo 2 -- larger step size, lower accuracy");
+            Utility.Log("-Demo 1a");
+            var rombergFunction = RombergFactory.MakeRomberg(8, 6);
+            var valRomb = AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, rombergFunction);
+            Utility.Log($"RArea={valRomb}");
+
+           Utility.Log("\n-Demo 2 -- larger step size, lower accuracy");
             Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple2, midpoint)}");
 
             Utility.Log("\n-Demo 3 -- symmetric bounds and a symmetric function (net area close to zero)");
