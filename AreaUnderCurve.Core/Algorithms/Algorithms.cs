@@ -51,6 +51,13 @@ namespace AreaUnderCurve.Core
             _functionMap.Add(nameof(Simpson), Simpson);
             _functionMap.Add(nameof(Trapezoid), Trapezoid);
             _functionMap.Add(nameof(Midpoint), Trapezoid);
+            _functionMap.Add("Romberg43", RombergFactory.MakeRombergFunction(4, 3));
+            _functionMap.Add("Romberg21", RombergFactory.MakeRombergFunction(2, 1));
+        }
+
+        public static IEnumerable<string> GetAlgorithms()
+        {
+            return _functionMap.Keys;
         }
 
         private static Dictionary<string, Func<Polynomial, double, double, double>> _functionMap = new Dictionary<string, Func<Polynomial, double, double, double>>();

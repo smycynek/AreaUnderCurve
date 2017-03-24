@@ -60,5 +60,14 @@ namespace AreaUnderCurve.Tests
             Assert.Equal(area, 0, 2);
         }
 
+        [Fact]
+        public void Test_Simple_Area_1_Romberg()
+        {
+
+            var polynomial = new Polynomial(new SortedDictionary<double, double> { [3] = 1 }); //# f(x) = x^3
+            var area = AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomial, bounds, algorithm);
+            Assert.Equal(area, 0, 2);
+        }
+
     }
 }
