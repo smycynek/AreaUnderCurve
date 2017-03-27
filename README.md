@@ -30,8 +30,11 @@ or
 or
 
 `var simpson = Algorithms.GetAlgorithm("Simpson");`
+
 `var boundsSimple1 = new Bounds(0, 10, .1);`
+
 `var polynomialSimpleCubic = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [3] = 1 });`
+
 `AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint);`
 
 
