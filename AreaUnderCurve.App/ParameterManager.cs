@@ -144,7 +144,8 @@ namespace AreaUnderCurve.App
         private RawParameters _rawParameters = null;
         #endregion
 
-        public static readonly string Usage = "USAGE: dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}... /lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size> /algorithm <Simpson | Trapezoid | Midpoint>";
+        public static readonly string Usage = "USAGE: dotnet AreaUnderCurve.App.dll (or AreaUnderCurve.App.exe) /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}... /lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size> /algorithm <Simpson | Trapezoid | Midpoint | RombergNM>" + Environment.NewLine +
+            "Example: dotnet AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10, stepSize 2 /algorithm Romberg32";
 
     }
 
