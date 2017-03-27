@@ -14,6 +14,7 @@ namespace AreaUnderCurve.Demo
             var Midpoint = Algorithms.GetAlgorithm("Midpoint");
             var Simpson = Algorithms.GetAlgorithm("Simpson");
             var Romberg54 = Algorithms.GetAlgorithm("Romberg54");
+            var Romberg11 = RombergFactory.MakeRombergFunction(1, 1);  //Alternate way to create function
             var Romberg = Algorithms.GetAlgorithm("Romberg");
             var boundsSimple1 = new Bounds(0, 10, .1);
             var boundsSimple2 = new Bounds(0, 10, 1);
@@ -57,7 +58,6 @@ namespace AreaUnderCurve.Demo
             Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleQuartic, boundsSimple3, Romberg21)}");
 
             Utility.Log("\n-Demo -- Romberg11 with stepSize of 10 (no initial subdivisions, since Romberg subdivides on its own anyway");
-            var Romberg11 = RombergFactory.MakeRombergFunction(1, 1);
             Utility.Log($"{polynomialSimpleQuartic.ToString()}, {boundsSimple3.ToString()}, Romberg11");
             Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleQuartic, boundsSimple3, Romberg11)}");
 
@@ -71,6 +71,8 @@ namespace AreaUnderCurve.Demo
             // integral of f(x)=x^.5 is (x^1.5)1.5 + sc, or (10*sqrt(10))/1.5 with these bounds
             Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleFraction, boundsSimple1, Trapezoid)}");
 
+            Utility.Log($"{polynomialSimpleFraction.ToString()}, {boundsSimple3.ToString()}, Romberg54");
+            Utility.Log($"Area={AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleFraction, boundsSimple3, Romberg54)}");
 
         }
 
