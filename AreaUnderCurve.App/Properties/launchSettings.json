@@ -2,7 +2,7 @@
   "profiles": {
     "Demo": {
       "commandName": "Project",
-      "commandLineArgs": "/l -10 /p {3:1} /u -5 "
+      "commandLineArgs": "/polynomial {3:1} /algorithm Romberg56"
     }
   }
 }

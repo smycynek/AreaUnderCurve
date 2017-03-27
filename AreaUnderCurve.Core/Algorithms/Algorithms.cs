@@ -8,7 +8,7 @@ namespace AreaUnderCurve.Core
     /// <summary>
     /// A few popular riemann sum algorithms
     /// </summary>
-    public static class Algorithms
+    public static partial class Algorithms
     {
         public static double Simpson(Polynomial polynomial, double lowerBound, double upperBound)
         {
@@ -32,11 +32,19 @@ namespace AreaUnderCurve.Core
 
         public static Func<Polynomial, double, double, double> GetAlgorithm(string name)
         {
-            if (_functionMap.Count == 0) 
+            if (_functionMap.Count == 0)
                 Init();
-            if (!_functionMap.ContainsKey(name))
-                throw new ArgumentException($"Algorithm not found: {name}");
-            return _functionMap[name];
+
+            if (ExtractRombergSuffix(name, out int n, out int m))
+            {
+                return RombergFactory.MakeRombergFunction(n, m);
+            }
+            else
+            {
+                if (!_functionMap.ContainsKey(name))
+                    throw new ArgumentException($"Algorithm not found: {name}");
+                return _functionMap[name];
+            }
         }
 
         #region Implementation
@@ -51,6 +59,32 @@ namespace AreaUnderCurve.Core
             _functionMap.Add(nameof(Simpson), Simpson);
             _functionMap.Add(nameof(Trapezoid), Trapezoid);
             _functionMap.Add(nameof(Midpoint), Trapezoid);
+            _functionMap.Add("Romberg", RombergFactory.MakeRombergFunction(4, 3));
+        }
+
+        private static bool ExtractRombergSuffix(string algorithmName, out int n, out int m)
+        {
+            m = 0;
+            n = 0;
+            
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("Romberg[0-9][0-9]");
+             var match = regex.Match(algorithmName);
+            if (!match.Success)
+            {
+                return false;
+            }
+            else
+            {
+                n = int.Parse(algorithmName[7].ToString());
+                m = int.Parse(algorithmName[8].ToString());
+                return true;
+            }
+            
+        }
+
+        public static IEnumerable<string> GetAlgorithms()
+        {
+            return _functionMap.Keys;
         }
 
         private static Dictionary<string, Func<Polynomial, double, double, double>> _functionMap = new Dictionary<string, Func<Polynomial, double, double, double>>();

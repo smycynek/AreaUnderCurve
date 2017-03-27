@@ -94,5 +94,30 @@ namespace AreaUnderCurve.Tests
             Assert.False(success);
             Assert.Null(rawParameters);
         }
+
+        [Fact]
+        public void GetAlgorithm_InvalidRomberg1()
+        {
+            Assert.Throws<ArgumentException>(() =>Algorithms.GetAlgorithm("Romberg45"));
+        }
+        [Fact]
+        public void GetAlgorithm_InvalidRomberg2()
+        {
+            Assert.Throws<ArgumentException>(() => Algorithms.GetAlgorithm("Romberg4x"));
+        }
+
+        [Fact]
+        public void GetAlgorithm_ValidRomberg1()
+        {
+            var algo =  Algorithms.GetAlgorithm("Romberg54");
+            Assert.NotNull(algo);
+        }
+
+        [Fact]
+        public void GetAlgorithm_ValidRomberg2()
+        {
+            var algo = Algorithms.GetAlgorithm("Romberg");
+            Assert.NotNull(algo);
+        }
     }
 }
