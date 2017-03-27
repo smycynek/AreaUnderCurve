@@ -6,7 +6,7 @@
 * https://www.nuget.org/packages/AreaUnderCurve.Core
 
 * Supports 
-    * simpson, trapezoid, midpoint, and rombertg* algorithms, 
+    * simpson, trapezoid, midpoint, and romberg* algorithms, 
     * n-degree single variable polynomials, including fractional exponents,
     * variable step size
 
