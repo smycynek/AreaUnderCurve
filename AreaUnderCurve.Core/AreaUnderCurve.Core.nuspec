@@ -4,7 +4,7 @@
     <!-- Required elements-->
     <id>AreaUnderCurve.Core</id>
     <title>Area Under Curve</title>
-    <version>0.2.2</version>
+    <version>0.3.0</version>
       <projectUrl>https://github.com/smycynek/AreaUnderCurve</projectUrl>
       <description>Calculates area under a polynomial</description>
       <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
@@ -13,6 +13,7 @@
       <copyright>Steven Mycynek 2017</copyright>
       <summary>A simple .NET Standard / 4.51 library for calculating riemann sums</summary>
       <tags>calculus integral riemann numerical</tags>
+      <releaseNotes>Added Romberg's method support</releaseNotes>
     <!-- Optional elements -->
     <!-- ... -->
     </metadata>
