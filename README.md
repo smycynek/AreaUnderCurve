@@ -10,21 +10,23 @@
     * N-degree single variable polynomials, including fractional exponents,
     * Variable step size
 
-`USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}...`
+`USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}`
 `/lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size>` 
 `/algorithm <Simpson | Trapezoid | Midpoint RombergNM>`
 
-* I did a python project just for fun (https://github.com/smycynek/area_under_curve), so I decided to make a .NET Core version.
+
+* I did an integration python project just for fun (https://github.com/smycynek/area_under_curve), so I decided to make a .NET Core version.
 
 * Try a simple function you can integrate by hand easily, like `f(x) = x^3` from `[0-10]`, and compare that to how accurate the midpoint, trapezoid, and simpson approximations are with various steps sizes.
 
+* All parameters are optional with reasonable defaults except /polynomial, which must be specified.
 
 ## Examples:
 ### Command-Line
 
-`dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
+*   `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
-`AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
+*   `AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
 ### C#
 
