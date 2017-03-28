@@ -12,7 +12,7 @@
       <authors>Steven Mycynek</authors>
       <copyright>Steven Mycynek 2017</copyright>
       <summary>A simple .NET Standard / 4.51 library for calculating riemann sums</summary>
-      <tags>calculus integral riemann numerical</tags>
+      <tags>calculus integral riemann numerical romberg</tags>
       <releaseNotes>Added Romberg's method support</releaseNotes>
     <!-- Optional elements -->
     <!-- ... -->
