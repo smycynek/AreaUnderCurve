@@ -10,7 +10,7 @@
     * N-degree single variable polynomials, including fractional exponents,
     * Variable step size
 
-`USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}`
+`USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1,DegreeN2:CoefficientM2,...}`
 `/lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size>` 
 `/algorithm <Simpson | Trapezoid | Midpoint RombergNM>`
 
