@@ -24,8 +24,6 @@
 
 `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
-or
-
 `AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
 ### C#
@@ -34,9 +32,9 @@ or
 
 `var boundsSimple1 = new Bounds(0, 10, .1);`
 
-`var polynomialSimpleCubic = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [3] = 1 });`
+`var polySimpleCubic = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [3] = 1 });`
 
-`AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint);`
+`AreaUnderCurve.Core.AreaUnderCurve.Calculate(polySimpleCubic, boundsSimple1, midpoint);`
 
 
 ### *Romberg's method
