@@ -19,24 +19,25 @@
 
 * Try a simple function you can integrate by hand easily, like `f(x) = x^3` from `[0-10]`, and compare that to how accurate the midpoint, trapezoid, and simpson approximations are with various steps sizes.
 
-* All parameters are optional with reasonable defaults except /polynomial, which must be specified.
+* All parameters are optional with reasonable defaults except `/polynomial`, which must be specified.
 
 ## Examples:
 ### Command-Line
 
 *   `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
-*   `AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
+*   `AreaUnderCurve.App.exe /polynomial {2:1,0:3} /algorithm Trapezoid`
 
 ### C#
+`using AreaUnderCurve.Core;`
 
-`var simpson = Algorithms.GetAlgorithm("Simpson");`
+`var midpoint = Algorithms.GetAlgorithm("Midpoint");`
 
 `var boundsSimple1 = new Bounds(0, 10, .1);`
 
-`var polySimpleCubic = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [3] = 1 });`
+`var polySquareRoot = new Polynomial(new System.Collections.Generic.SortedDictionary<double, double> { [0.5] = 1 });`
 
-`AreaUnderCurve.Core.AreaUnderCurve.Calculate(polySimpleCubic, boundsSimple1, midpoint);`
+`AreaUnderCurve.Calculate(polySquareRoot, boundsSimple1, midpoint);`
 
 
 ### *Romberg's method
