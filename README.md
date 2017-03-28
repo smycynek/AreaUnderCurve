@@ -6,9 +6,9 @@
 * https://www.nuget.org/packages/AreaUnderCurve.Core
 
 * Supports 
-    * simpson, trapezoid, midpoint, and romberg* algorithms, 
-    * n-degree single variable polynomials, including fractional exponents,
-    * variable step size
+    * Simpson, Trapezoid, Midpoint, and Romberg* algorithms, 
+    * N-degree single variable polynomials, including fractional exponents,
+    * Variable step size
 
 `USAGE =  dotnet AreaUnderCurve.App.dll /polynomial {DegreeN1:CoefficientM1, DegreeN2:CoefficientM2, ...}...`
 `/lowerBound <lower bound> /upperBound <upper bound> /stepSize <step size>` 
@@ -20,6 +20,7 @@
 
 
 ## Examples:
+### Command-Line
 
 `dotnet AreaUnderCurve.App.dll /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
@@ -27,7 +28,7 @@ or
 
 `AreaUnderCurve.App.exe /polynomial {3:1} /lowerBound 0 /upperBound 10 /stepSize .1 /algorithm Simpson`
 
-or
+### C#
 
 `var simpson = Algorithms.GetAlgorithm("Simpson");`
 
@@ -38,7 +39,7 @@ or
 `AreaUnderCurve.Core.AreaUnderCurve.Calculate(polynomialSimpleCubic, boundsSimple1, midpoint);`
 
 
-### Romberg's method
+### *Romberg's method
 
 * Note that the "Romberg" implementation (https://en.wikipedia.org/wiki/Romberg's_method) is fairly rough and unoptimized, and it requires parameters `n` and `m`
 `(n >=m >=1)` to determine the iterations and subdivisions.   `n` and `m` can be set at the command line as a suffix, like this:
@@ -49,6 +50,5 @@ If no suffix is set,`(4,3)` is used as a default.
 
 * Also note that since the Romberg method already subdivides a curve, selecting a small step size parameter separately is not strictly necessary.  A step size equal to the the total length of the bound (see example above) will often yield reasonable results.
 
-
-
-Also try out `AreaUnderCurve.Tests` and `AreaUnderCurve.Demo`.
+## More examples
+Try out `AreaUnderCurve.Tests` and `AreaUnderCurve.Demo`.
